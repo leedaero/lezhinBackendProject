@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,9 @@ public class Artwork extends BaseTime {
 
     @Column(name = "f_free_yn")
     private String freeYn;
+
+    @Column(name = "f_price")
+    private BigDecimal price;
 
     @Column(name = "f_thumbnail_url")
     private String thumbnailUrl;

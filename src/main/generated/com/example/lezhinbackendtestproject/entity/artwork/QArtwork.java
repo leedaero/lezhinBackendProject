@@ -43,6 +43,8 @@ public class QArtwork extends EntityPathBase<Artwork> {
 
     public final StringPath modifyID = createString("modifyID");
 
+    public final NumberPath<java.math.BigDecimal> price = createNumber("price", java.math.BigDecimal.class);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> regDate = _super.regDate;
 
