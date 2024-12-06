@@ -2,6 +2,7 @@ package com.example.lezhinbackendtestproject.domain.order.dto.response;
 
 import com.example.lezhinbackendtestproject.entity.order.Order;
 import com.example.lezhinbackendtestproject.global.response.success.ApiSuccessCode;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -45,6 +46,26 @@ public class OrderResponse {
                     .orderDate(order.getOrderDate())
                     .freeYn(order.getOrderPrice().equals(BigDecimal.valueOf(0))? "N" :"Y") // 0원이면 공짜로 전달
                     .build();
+        }
+
+    }
+
+
+    @Getter
+    @Setter
+    @Builder
+    @NoArgsConstructor
+    public static class OrderBestArtwork {
+
+        String artworkCode;
+        String artworkName;
+        Long orderCount;
+
+        @QueryProjection
+        public OrderBestArtwork(String artworkCode, String artworkName, Long orderCount) {
+            this.artworkCode = artworkCode;
+            this.artworkName = artworkName;
+            this.orderCount = orderCount;
         }
 
     }

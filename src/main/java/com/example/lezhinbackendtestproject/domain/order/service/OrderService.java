@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -73,5 +74,11 @@ public class OrderService {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         return "OR"+timestamp +UUID.randomUUID().toString().substring(0, 8);
     }
+
+
+    public List<OrderResponse.OrderBestArtwork> findByOrderBestArtwork(){
+        return orderRepository.findByOrderBestArtwork();
+    }
+
 
 }

@@ -21,7 +21,7 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
     @PostMapping("/order-post")
-    @Operation(summary = "order artwork api", description = "작품 조회 이력 API")
+    @Operation(summary = "order artwork api", description = "작품 구매 API")
     public ResponseEntity<?> orderPost(@RequestBody OrderRequest request) {
         try {
             return ResponseEntity.ok(orderService.processOrderPost(request));
@@ -31,6 +31,13 @@ public class OrderController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+
+    }
+
+    @GetMapping("/order-best-artwork")
+    @Operation(summary = "order best artwork api", description = "구매 인기작품 조회 API")
+    public List<OrderResponse.OrderBestArtwork> orderBestArtwork() {
+        return orderService.findByOrderBestArtwork();
 
     }
 }
