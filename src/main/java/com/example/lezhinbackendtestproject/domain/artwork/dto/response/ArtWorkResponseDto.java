@@ -1,8 +1,10 @@
 package com.example.lezhinbackendtestproject.domain.artwork.dto.response;
 
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.*;
-import org.apache.commons.lang3.StringUtils;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 

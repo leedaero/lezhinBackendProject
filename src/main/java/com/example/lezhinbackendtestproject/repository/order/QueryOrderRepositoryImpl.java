@@ -1,6 +1,5 @@
 package com.example.lezhinbackendtestproject.repository.order;
 
-import com.example.lezhinbackendtestproject.domain.artwork.dto.response.QArtWorkResponseDto_BestArtwork;
 import com.example.lezhinbackendtestproject.domain.order.dto.response.OrderResponse;
 import com.example.lezhinbackendtestproject.domain.order.dto.response.QOrderResponse_OrderBestArtwork;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -8,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 import static com.example.lezhinbackendtestproject.entity.artwork.QArtwork.artwork;
 import static com.example.lezhinbackendtestproject.entity.order.QOrder.order;
-import static com.example.lezhinbackendtestproject.entity.user.QUser.user;
 
 
 @Repository
