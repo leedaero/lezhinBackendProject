@@ -1,6 +1,8 @@
 package com.example.lezhinbackendtestproject.domain.artwork.service;
 
 import com.example.lezhinbackendtestproject.domain.artwork.dto.response.ArtWorkResponseDto;
+import com.example.lezhinbackendtestproject.global.response.error.codes.ApiErrorCode;
+import com.example.lezhinbackendtestproject.global.response.error.exceptions.RestBusinessException;
 import com.example.lezhinbackendtestproject.repository.artwork.ArtworkRepository;
 import com.example.lezhinbackendtestproject.repository.artwork.ArtworkViewHistoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,15 @@ public class ArtWorkService {
     public List<ArtWorkResponseDto.BestArtwork> findByBestArtworkList(){
         return artworkRepository.findByBestArtworkList();
     }
+
+    public void deleteArtwork(String artworkCode){
+
+        if(!artworkRepository.existsByArtworkCode(artworkCode)){
+            throw new RestBusinessException.NotFound(ApiErrorCode.ARTWORK_NOT_FOUND);
+        }
+        artworkRepository.deleteByArtworkCode(artworkCode);
+    }
+
 
 
 }

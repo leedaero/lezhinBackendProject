@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface ArtworkRepository extends JpaRepository<Artwork,Long>, QueryArtworkRepository {
     Optional<Artwork> findArtworkByArtworkCode(String artworkCode);
+    boolean existsByArtworkCode(String artworkCode);
+    void deleteByArtworkCode(String artworkCode);
 }
