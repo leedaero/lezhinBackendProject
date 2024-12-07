@@ -185,6 +185,19 @@
    ![프로젝트 구조](https://github.com/leedaero/lezhinBackendProject/blob/main/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B5%AC%EC%A1%B0.png?raw=true)
 3. 테이블 설계 구조
    ![테이블 구조](https://github.com/leedaero/lezhinBackendProject/blob/main/%ED%85%8C%EC%9D%B4%EB%B8%94%20%EC%84%A4%EA%B3%84ERD.png?raw=true)
+    - t_artwork_mst : 작품 테이블
+      - 작품 전반 적인 내용을 관리 합니다. 
+    - t_artwork_view_history : 작품 이력 테이블
+      - 작품의 유저의 조회한 이력을 관리 합니다.
+    - t_event_mst : 이벤트 테이블
+      - 이벤트 내역을 관리 하고 기간을 설정한 만큼 작픔의 유료/무료를 전환이 가능 합니다.
+    - t_event_artwork_mapping : 이벤트 매핑 테이블
+      - 이벤트 작품을 연결하는 역할을 합니다. 작품코드, 이벤트 코드를 등록/삭제를 통해 이벤트 종료를 제어합니다.
+    - t_order_mst : 작품 구매테이블
+      - 사용자가 구매한 내역을 저장합니다. 
+    - t_user_mst : 사용자 테이블
+      - 사용자를 관리합니다. 사용자 인증, 사용자 관리를 합니다.
+
 4. 코드 참고사항
    - 선택사항으로 사용인증 구현
      - @VerifyHeader 달아주면 해더 정보에서 jwt 사용하여 인증합니다.
@@ -261,7 +274,7 @@
            "freeYn": "Y"
             }
       }
-     ```                
+     ```
 
 
 📌 고려했던 상황과 해결 방안
