@@ -13,15 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class OrderResponse {
-    private String status;
     private Data data;
-
-    public static OrderResponse toResult(ApiSuccessCode apiSuccessCode, Data data){
-        return OrderResponse.builder()
-                .status(apiSuccessCode.getSuccessCode())
-                .data(data)
-                .build();
-    }
     @Getter
     @Setter
     @Builder

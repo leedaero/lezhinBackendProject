@@ -5,5 +5,5 @@ import com.example.lezhinbackendtestproject.domain.artwork.dto.response.ArtWorkR
 import java.util.List;
 
 public interface QueryArtworkViewHistoryRepository {
-    List<ArtWorkResponseDto.ViewHistory> findByArtworkViewHistory(String userId);
+    List<ArtWorkResponseDto.ViewHistory> findByArtworkViewHistory();
 }

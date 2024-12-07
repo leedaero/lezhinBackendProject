@@ -20,14 +20,13 @@ import static com.example.lezhinbackendtestproject.entity.user.QUser.user;
 public class QueryArtworkViewHistoryRepositoryImpl implements QueryArtworkViewHistoryRepository{
     private final JPAQueryFactory jpaQueryFactory;
     @Override
-    public List<ArtWorkResponseDto.ViewHistory> findByArtworkViewHistory(String userId){
+    public List<ArtWorkResponseDto.ViewHistory> findByArtworkViewHistory(){
         return jpaQueryFactory.select(new QArtWorkResponseDto_ViewHistory(artwork.artworkCode,artwork.artworkName,artworkViewHistory.viewDate,user.userId,user.userName))
                 .from(artworkViewHistory)
                 .join(artwork)
                 .on(artworkViewHistory.artworkCode.eq(artwork))
                 .join(user)
                 .on(user.userId.eq(artworkViewHistory.userId))
-                .where(userIdEq(userId))
                 .fetch();
     }
     private BooleanExpression userIdEq(String userid){

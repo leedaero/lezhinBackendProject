@@ -16,8 +16,8 @@ import java.util.List;
 public class ArtWorkViewService {
     private final ArtworkViewHistoryRepository artworkViewHistoryRepository;
 
-    public List<ArtWorkResponseDto.ViewHistory> findByArtworkViewHistory(String userId){
-        return artworkViewHistoryRepository.findByArtworkViewHistory(userId);
+    public List<ArtWorkResponseDto.ViewHistory> findByArtworkViewHistory(){
+        return artworkViewHistoryRepository.findByArtworkViewHistory();
     }
 
 

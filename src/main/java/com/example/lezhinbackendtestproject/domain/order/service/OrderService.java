@@ -7,7 +7,6 @@ import com.example.lezhinbackendtestproject.entity.order.Order;
 import com.example.lezhinbackendtestproject.entity.user.User;
 import com.example.lezhinbackendtestproject.global.response.error.codes.ApiErrorCode;
 import com.example.lezhinbackendtestproject.global.response.error.exceptions.RestBusinessException;
-import com.example.lezhinbackendtestproject.global.response.success.ApiSuccessCode;
 import com.example.lezhinbackendtestproject.repository.artwork.ArtworkRepository;
 import com.example.lezhinbackendtestproject.repository.event.EventRepository;
 import com.example.lezhinbackendtestproject.repository.order.OrderRepository;
@@ -15,7 +14,6 @@ import com.example.lezhinbackendtestproject.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,7 +32,7 @@ public class OrderService {
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
 
-    public OrderResponse processOrderPost(OrderRequest request){
+    public OrderResponse.Data processOrderPost(OrderRequest request){
         //작품이 있는지 체크
         Optional<Artwork> artwork = artworkRepository.findArtworkByArtworkCode(request.getArtworkCode());
         if(artwork.isEmpty()){
@@ -63,11 +61,7 @@ public class OrderService {
                 request.getArtworkCode(),
                 orderPrice));
         //리턴
-        return OrderResponse.toResult(
-                ApiSuccessCode.RESPONSE_SUCCESS_OK,
-                OrderResponse.Data.toResult(order)
-        );
-
+        return OrderResponse.Data.toResult(order);
     }
     //주문번호 생성
     private String generateOrderId() {

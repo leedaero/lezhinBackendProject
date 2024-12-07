@@ -61,22 +61,110 @@
    6. API 명세된 swagger-ui 접속 
       - url :  http://localhost:8080/swagger-ui/index.html
    
-   7. API 상세설명
-      1. 작품 조회 이력 API
-           ```bash
-         curl -X GET 'http://localhost:8080/v1/artworks/history'
+      7. API 상세
+         1. 작품 조회 이력 API
+         
+         - request
+            ```bash
+           curl -X GET 'http://localhost:8080/v1/artworks/history'
+            ```
+          - response
+             ``` json
+               {
+               "code": 200,
+               "msg": "Request Success",
+               "data": [
+               {
+               "artworkCode": "AR001001",
+               "artworkName": "바퀴멘터리",
+               "viewDate": "2024-12-03T08:46:22",
+               "userId": "daerolee",
+               "userName": "이대로"
+               },
+               {
+               "artworkCode": "AR001001",
+               "artworkName": "바퀴멘터리",
+               "viewDate": "2024-12-03T08:46:52",
+               "userId": "daerolee",
+               "userName": "이대로"
+               }, ....
+              ```
       2. 인기 작품 조회 API
-         ```bash
-         curl -X GET 'http://localhost:8080/v1/artworks/best'
-      3. 작품 구매 API
-         ```bash
-         curl -X POST   'http://localhost:8080/v1/orders' \-H 'accept: */*' \-H 'Content-Type: application/json' \-d '{"artworkCode": "AR001003","userId": "lezhin01"}' 
+          - request
+             ```bash
+            curl -X GET 'http://localhost:8080/v1/artworks/best'
+             ```
+          - response
+              ``` json
+                {
+                "code": 200,
+                "msg": "Request Success",
+                "data": [
+                {
+                "artworkCode": "AR001001",
+                "artworkName": "바퀴멘터리",
+                "viewDate": "2024-12-03T08:46:22",
+                "userId": "daerolee",
+                "userName": "이대로"
+                },
+                {
+                "artworkCode": "AR001001",
+                "artworkName": "바퀴멘터리",
+                "viewDate": "2024-12-03T08:46:52",
+                "userId": "daerolee",
+                "userName": "이대로"
+                }, ....
+               ```
+      3. 작품 구매 API 
+            - request (무료작품 구매 요청) 
+              ```bash
+               curl -X POST   'http://localhost:8080/v1/orders' \-H 'accept: */*' \-H 'Content-Type: application/json' \-d '{"artworkCode": "AR001002","userId": "lezhin01"}'
+              ```
+         - response (무료작품 구매 응답)
+            ``` json       
+                { 
+                  "code": 200,"msg": "Order Success!",       
+                  "data": {
+                  "artworkCode": "AR001002",
+                  "userId": "AR001002",
+                  "orderNo": "OR2024120716083151ba7f20",
+                  "orderPrice": 0,
+                  "paymentCode": "PM001",
+                  "orderDate": "2024-12-07T16:08:31.701464",
+                  "freeYn": "N"
+                    }
+                }
+             ```
       4. 구매 인기작품 조회
-         ```bash
-         curl -X GET 'http://localhost:8080/v1/orders/best'
+         - request
+            ```bash
+             curl -X GET 'http://localhost:8080/v1/orders/best'
+           ```
+         - request
+           ```bash
+           {
+              "code": 200,
+              "msg": "Request Success",
+              "data": [
+               {
+                "artworkCode": "AR001006",
+                "artworkName": "소꿉친구가 자꾸 괴롭혀!",
+                "orderCount": 19
+              }.....
+           ```
       5. 작품 및 이력 삭제 API
-         ```bash
-         curl -X DELETE 'http://localhost:8080/v1/artworks/AR001014'
+         - request
+           ```bash
+           curl -X DELETE 'http://localhost:8080/v1/artworks/AR001014'
+           ```
+         - request
+           ```bash
+           {
+            "code": 200,
+            "msg": "Data Delete Success"
+           }
+           ```
+           
 
 📌 개발내용
 ---

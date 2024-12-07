@@ -9,11 +9,11 @@ import org.springframework.http.HttpStatus;
 public enum ApiSuccessCode implements SuccessCode {
 
 
-    RESPONSE_SUCCESS_OK (HttpStatus.OK, "AS001", "Response Success"),
-    RT_SUCCESS( HttpStatus.OK, "AS002", "Request Success"),
-    CREATE_SUCCESS( HttpStatus.CREATED, "AS003", "Create Success"),
-    SEARCH_SUCCESS( HttpStatus.OK, "AS004", "Search Success"),
-    RT_EMPTY( HttpStatus.NO_CONTENT, "AS005","Data Empty"),
+    RESPONSE_SUCCESS_OK (HttpStatus.OK, "AS001", "Request Success"),
+    CREATE_SUCCESS( HttpStatus.CREATED, "AS002", "Create Success"),
+    SEARCH_SUCCESS( HttpStatus.OK, "AS003", "Search Success"),
+    DELETE_SUCCESS( HttpStatus.OK, "AS004","Data Delete Success"),
+    ORDER_SUCCESS( HttpStatus.OK, "AS005","Order Success!"),
 
     ;
 
