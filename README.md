@@ -172,7 +172,7 @@
     - **인증** : JWT ( 스프링 시큐리티 사용)
     - **ORM** : JPA , QueryDsl
 2. 프로젝트 구조
-   ![프로젝트 구조](https://github.com/leedaero/lezhinBackendProject/blob/main/IDE_%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4%20%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%951.png?raw=true)
+   ![프로젝트 구조](https://github.com/leedaero/lezhinBackendProject/blob/main/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B5%AC%EC%A1%B0.png?raw=true)
 3. 코드 참고사항
    - 선택사항으로 사용인증 구현
      - @VerifyHeader 달아주면 해더 정보에서 jwt 사용하여 인증합니다.
