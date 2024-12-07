@@ -4,7 +4,7 @@ decorator:
 
 spring:
   datasource:
-    url: jdbc:mysql://192.168.0.34:3306/lezhin?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://ldrbabo.iptime.org:3306/lezhin?useSSL=false&serverTimezone=UTC
     username: admin
     password: lezhin1234!@
     driver-class-name: com.mysql.cj.jdbc.Driver
