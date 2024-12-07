@@ -66,7 +66,17 @@
             pool-name: HikariPool
    6. API 명세된 swagger-ui 접속 
       - url :  http://localhost:8080/swagger-ui/index.html
-   
+        - Swagger UI API 목록
+        ![ui](https://github.com/leedaero/lezhinBackendProject/blob/main/%EC%8A%A4%EC%9B%A8%EA%B1%B0%20UI%20API%20%EB%AA%A9%EB%A1%9D.png?raw=true)
+        
+        - 사용자 인증 토큰 사용법 1
+        ![토큰사용법 1](https://github.com/leedaero/lezhinBackendProject/blob/main/%EC%9D%B8%EC%A6%9D%EA%B4%80%EB%A0%A8%20%ED%86%A0%ED%81%B0%20%EC%9E%85%EB%A0%A51.png?raw=true)
+        - 사용자 인증 토큰 사용법 2
+          ![토큰사용법 2](https://github.com/leedaero/lezhinBackendProject/blob/main/%EC%9D%B8%EC%A6%9D%EA%B4%80%EB%A0%A8%20%ED%86%A0%ED%81%B0%20%EC%9E%85%EB%A0%A52.png?raw=true)
+        - 사용자 인증 토큰 사용법 3
+          ![토큰사용법 3](https://github.com/leedaero/lezhinBackendProject/blob/main/%EC%9D%B8%EC%A6%9D%EA%B4%80%EB%A0%A8%20%ED%86%A0%ED%81%B0%20%EC%9E%85%EB%A0%A53.png?raw=true)
+        - 사용자 인증 토큰 사용법 4
+          ![토큰사용법 4](https://github.com/leedaero/lezhinBackendProject/blob/main/%EC%9D%B8%EC%A6%9D%EA%B4%80%EB%A0%A8%20%ED%86%A0%ED%81%B0%20%EC%9E%85%EB%A0%A54.png?raw=true)
       7. API 상세
          1. 작품 조회 이력 API
          
