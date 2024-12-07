@@ -1,5 +1,6 @@
 package com.example.lezhinbackendtestproject.global.response.common;
 
+import com.example.lezhinbackendtestproject.global.response.error.codes.ErrorCode;
 import com.example.lezhinbackendtestproject.global.response.success.SuccessCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -29,6 +30,10 @@ public class ApiResponse {
         this.code = successCode.getHttpStatus().value();
         this.msg = successCode.getMessage();
     }
+    private ApiResponse(ErrorCode errorCode ) {
+        this.code = errorCode.getHttpStatus().value();
+        this.msg = errorCode.getMessage();
+    }
 
     public static ResponseEntity<ApiResponse> toResponseEntity (SuccessCode successCode) {
 
@@ -48,5 +53,14 @@ public class ApiResponse {
         return ResponseEntity
                 .status(successCode.getHttpStatus())
                 .body(new ApiResponse(successCode, responseObject));
+    }
+    public static ResponseEntity<ApiResponse> toResponseEntity (ErrorCode errorCode) {
+
+        log.info("Success Response - success code : {}, success message : {}",
+                errorCode.getErrorCode(), errorCode.getMessage());
+
+        return ResponseEntity
+                .status(errorCode.getHttpStatus())
+                .body(new ApiResponse(errorCode));
     }
 }

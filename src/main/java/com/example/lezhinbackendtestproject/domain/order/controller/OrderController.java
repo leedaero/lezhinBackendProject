@@ -1,7 +1,6 @@
 package com.example.lezhinbackendtestproject.domain.order.controller;
 
 import com.example.lezhinbackendtestproject.domain.order.dto.request.OrderRequest;
-import com.example.lezhinbackendtestproject.domain.order.dto.response.OrderResponse;
 import com.example.lezhinbackendtestproject.domain.order.service.OrderService;
 import com.example.lezhinbackendtestproject.global.response.common.ApiResponse;
 import com.example.lezhinbackendtestproject.global.response.error.exceptions.RestBusinessException;
@@ -11,8 +10,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static com.example.lezhinbackendtestproject.global.response.success.ApiSuccessCode.ORDER_SUCCESS;
 
@@ -25,8 +22,11 @@ public class OrderController {
     @PostMapping("")
     @Operation(summary = "order artwork api", description = "작품 구매 API")
     public ResponseEntity<ApiResponse> orderPost(@RequestBody OrderRequest request) {
-      return ApiResponse.toResponseEntity(ORDER_SUCCESS, orderService.processOrderPost(request));
-
+        try {
+            return ApiResponse.toResponseEntity(ORDER_SUCCESS, orderService.processOrderPost(request));
+        }catch (RestBusinessException e){
+            return ApiResponse.toResponseEntity(e.getErrorCode());
+        }
     }
 
     @GetMapping("/best")
