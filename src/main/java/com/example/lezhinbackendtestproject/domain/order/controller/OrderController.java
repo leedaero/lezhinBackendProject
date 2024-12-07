@@ -1,10 +1,8 @@
 package com.example.lezhinbackendtestproject.domain.order.controller;
 
-import com.example.lezhinbackendtestproject.domain.artwork.dto.response.ArtWorkResponseDto;
 import com.example.lezhinbackendtestproject.domain.order.dto.request.OrderRequest;
 import com.example.lezhinbackendtestproject.domain.order.dto.response.OrderResponse;
 import com.example.lezhinbackendtestproject.domain.order.service.OrderService;
-import com.example.lezhinbackendtestproject.global.response.error.codes.ApiErrorCode;
 import com.example.lezhinbackendtestproject.global.response.error.exceptions.RestBusinessException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,11 +14,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1")
+@RequestMapping("/v1/orders")
 @Tag(name = "Lezhin Backend Api")
 public class OrderController {
     private final OrderService orderService;
-    @PostMapping("/order-post")
+    @PostMapping("")
     @Operation(summary = "order artwork api", description = "작품 구매 API")
     public ResponseEntity<?> orderPost(@RequestBody OrderRequest request) {
         try {
@@ -34,7 +32,7 @@ public class OrderController {
 
     }
 
-    @GetMapping("/order-best-artwork")
+    @GetMapping("/best")
     @Operation(summary = "order best artwork api", description = "구매 인기작품 조회 API")
     public List<OrderResponse.OrderBestArtwork> orderBestArtwork() {
         return orderService.findByOrderBestArtwork();
