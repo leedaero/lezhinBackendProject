@@ -11,7 +11,8 @@ public enum ApiErrorCode implements ErrorCode{
     ARTWORK_NOT_FOUND(HttpStatus.NOT_FOUND, "AE001", "AtrWork Not Found!"),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "AE002", "User Not Found!"),
     ORDER_NOT_FOUND(HttpStatus.NOT_FOUND, "AE003", "Order Not Found!"),
-    API_BAD_REQUEST(HttpStatus.BAD_REQUEST, "AE003", "Invalid request"),
+    API_BAD_REQUEST(HttpStatus.BAD_REQUEST, "AE004", "Invalid request"),
+    USER_PASSWORD_INVALID(HttpStatus.NOT_FOUND, "AE005", "User Not Invalid !"),
 
 
     TOKEN_INVALID(HttpStatus.UNAUTHORIZED, "AE402", "Invalid Token"),

@@ -15,15 +15,11 @@
    
  🚀 API 실행 방법
 ---
-1. 개발환경
-   - Version : Java 23
-   - IDE : IntelliJ
-   - Framework : SpringBoot 3.4
-   - ORM : JPA , QueryDsl
-2. 프로젝트 클론:
+
+1. 프로젝트 클론:
    ```bash
    git clone https://github.com/leedaero/lezhinBackendProject.git
-3. IDE 설정
+2. IDE 설정
    - 대중적으로 쓰는 인텔리제이 기준으로 설명하는점을 먼저 말씀드립니다.
    
    1. IDE Anonotation Processors 설정
@@ -140,7 +136,7 @@
             ```bash
              curl -X GET 'http://localhost:8080/v1/orders/best'
            ```
-         - request
+         - response
            ```bash
            {
               "code": 200,
@@ -157,7 +153,7 @@
            ```bash
            curl -X DELETE 'http://localhost:8080/v1/artworks/AR001014'
            ```
-         - request
+         - response
            ```bash
            {
             "code": 200,
@@ -168,7 +164,103 @@
 
 📌 개발내용
 ---
+1. 개발환경
+    - **언어** : Java 23
+    - **프레임워크** : Spring boot 3.4
+    - **데이터베이스** : Mysql 8.0.13
+    - **IDE** : IntelliJ
+    - **인증** : JWT ( 스프링 시큐리티 사용)
+    - **ORM** : JPA , QueryDsl
+2. 프로젝트 구조
+   ![프로젝트 구조](https://github.com/leedaero/lezhinBackendProject/blob/main/IDE_%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4%20%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%951.png?raw=true)
+3. 코드 참고사항
+   - 선택사항으로 사용인증 구현
+     - @VerifyHeader 달아주면 해더 정보에서 jwt 사용하여 인증합니다.
+     -   사용자 인증을 위한 사용자 등록 API
+         - request
+           ```bash
+           curl -X POST 'http://localhost:8080/v1/external/auth/register'
+            -H 'accept: */*' \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "userId": "daero53",
+              "userName": "이대로3",
+              "userPassword": "123456",
+             "emailAddress": "daero53@naver.com",
+            "phoneNumber": "01000000000"
+            }'
+           ```
+         - response
+           ```bash
+           {
+             "code": 200,
+             "msg": "Request Success",
+             "data": {
+                 "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IuydtOuMgOuhnDMiLCJzdWIiOiLsnbTrjIDroZwzIiwiaWF0IjoxNzMzNTc1NDU5LCJleHAiOjE3MzM2NjE4NTl9.FMXAGhywmHaSr73-ygDOjB1rrMJVh0qmjB87wAEs2BM"
+            }
+           }
+           ```
+     -   사용자 인증을 위한 로그인 인증 API
+       - request
+         ```bash
+         curl -X POST 'http://localhost:8080/v1/external/auth/register'
+          -H 'accept: */*' \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "userId": "daero53",
+            "userPassword": "123456"
+          }'
+         ```
+       - response
+         ```bash
+         {
+           "code": 200,
+           "msg": "Request Success",
+           "data": {
+             "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IuydtOuMgOuhnDMiLCJzdWIiOiLsnbTrjIDroZwzIiwiaWF0IjoxNzMzNTc1NzY0LCJleHAiOjE3MzM2NjIxNjR9.d0o-EGj9EY8qQ-Er6Lh_M6U6zxpRELKyWNGjjmTn5Wg"
+          }
+         }
+         ```
+     -   @VerifyHeader 어노테이션 달아주면 해더 정보에서 jwt 사용하여 사용자를 인증합니다.
+     -  앞에서 발행한 토큰을 넣어 주문을 진행합니다.
+       - request
+        ```bash
+        curl -X POST 'http://localhost:8080/v1/external/orders'\
+        -H 'accept: */*' \
+        -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IuydtOuMgOuhnDMiLCJzdWIiOiLsnbTrjIDroZwzIiwiaWF0IjoxNzMzNTc1NzY0LCJleHAiOjE3MzM2NjIxNjR9.d0o-EGj9EY8qQ-Er6Lh_M6U6zxpRELKyWNGjjmTn5Wg' \
+        -H 'Content-Type: application/json' \
+        -d '{
+            "artworkCode": "AR001007",
+            "userId": "daero53"
+        }'
+     ```
+        - response
+        ```bash
+        {
+           "code": 200,
+           "msg": "Order Success!",
+           "data": {
+           "artworkCode": "AR001007",
+           "userId": "AR001007",
+           "orderNo": "OR20241207215130f460d2c0",
+           "orderPrice": 300,
+           "paymentCode": "PM001",
+           "orderDate": "2024-12-07T21:51:30.846606",
+           "freeYn": "Y"
+            }
+      }
+     ```                
 
 
 📌 고려했던 상황과 해결 방안
 ---
+1. 민감정보에 대한 처리 방안
+    - 문제 : DB연결 하는 사용하는 접속정보를 깃 퍼블릭한 곳에 노출됩니다.
+    - 해결 :
+      - Config Server (Spring Cloud Config) 활용
+      - Config Server는 외부에 있는 중앙 집중형 환경 설정 서버로, 모든 서비스의 설정 파일을 한곳에서 관리할 수 있습니다.
+2. 사용자 인증 구현을 개선하는 방안
+    - 문제 : 토큰 탈취 위험이 있습니다.
+    - 해결 : 
+      - 서버에 사용자 정보를 서버 메모리 또는 DB에 세션으로 저장하고, 사용자에게는 세션 ID만 쿠키로 전달합니다.
+      

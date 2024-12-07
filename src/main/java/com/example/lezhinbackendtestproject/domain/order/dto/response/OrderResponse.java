@@ -1,7 +1,6 @@
 package com.example.lezhinbackendtestproject.domain.order.dto.response;
 
 import com.example.lezhinbackendtestproject.entity.order.Order;
-import com.example.lezhinbackendtestproject.global.response.success.ApiSuccessCode;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 

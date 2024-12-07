@@ -30,7 +30,7 @@ public class ArtWorkController {
     }
 
     @GetMapping("/best")
-    @Operation(summary = "best-artwork api", description = "인기 작품 조회 API")
+    @Operation(summary = "best artwork api", description = "인기 작품 조회 API")
     public ResponseEntity<ApiResponse> bestArtwork() {
         return ApiResponse.toResponseEntity(ApiSuccessCode.RESPONSE_SUCCESS_OK,artWorkService.findByBestArtworkList()) ;
     }

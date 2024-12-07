@@ -1,6 +1,8 @@
 package com.example.lezhinbackendtestproject.entity.user;
 
+import com.example.lezhinbackendtestproject.domain.auth.dto.request.AuthRequest;
 import com.example.lezhinbackendtestproject.entity.base.BaseTime;
+import com.example.lezhinbackendtestproject.enums.auth.UserStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter(AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@SuperBuilder
 @Entity
 @Table(catalog = "lezhin", name = "t_user_mst")
 public class User extends BaseTime {
@@ -53,5 +56,19 @@ public class User extends BaseTime {
 
     @Column(name = "f_mdfy_id")
     private String modifyID;
+
+    public static User toEntity(AuthRequest.Register request, String userPassword){
+        return User.builder()
+                .userId(request.getUserId())
+                .userName(request.getUserName())
+                .userPassword(userPassword)
+                .emailAddress(request.getEmailAddress())
+                .phoneNumber(request.getPhoneNumber())
+                .adultYn("N")
+                .status(UserStatus.ACTIVE.getValue())
+                .lastLoginDate(LocalDateTime.now())
+                .regId("SYSTEM")
+                .build();
+    }
 
 }
