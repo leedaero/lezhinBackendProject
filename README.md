@@ -25,6 +25,62 @@
    git clone https://github.com/leedaero/lezhinBackendProject.git
 3. IDE 설정
    - 대중적으로 쓰는 인텔리제이 기준으로 설명하는점을 먼저 말씀드립니다.
-   1. 깃 클론이후 컴파일 설정 
+   
+   1. IDE Anonotation Processors 설정
+   
+   ![설정1](https://github.com/leedaero/lezhinBackendProject/blob/main/IDE_%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4%20%EC%85%8B%ED%8C%85_%EC%BF%A8%EB%9E%98%EC%8A%A4%ED%8C%8C%EC%9D%BC%20%EC%83%9D%EC%84%B1%EA%B4%80%EB%A0%A8%20%EC%84%A4%EC%A0%95.png?raw=trueg)
+   
       
-   2. 
+   2. IDE 빌드툴 그래들 설정
+
+   ![설정2](https://github.com/leedaero/lezhinBackendProject/blob/main/IDE_%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4_%EC%85%8B%ED%8C%85_%EA%B7%B8%EB%9E%98%EB%93%A4%20%EC%84%A4%EC%A0%95.png?raw=true)
+
+   3. 어플리케이션 실행을 위한 설정 edit Configurations
+
+   ![설정3](https://github.com/leedaero/lezhinBackendProject/blob/main/IDE_%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4%20%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%951.png?raw=true)
+
+   4. 어플리케이션 실행을 Active profiles local 설정
+
+   ![설정4](https://github.com/leedaero/lezhinBackendProject/blob/main/IDE_%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4%20%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%952.png?raw=true)
+   5. DB 연결설정 application-local.yml 
+   - 로컬  url 192.168.0.34 주소만 메일로 전달드린 url 변경 해주시면 됩니다.
+      ```yaml
+      spring:
+         datasource:
+         url: jdbc:mysql://192.168.0.34:3306/lezhin?useSSL=false&serverTimezone=UTC
+         username: xxxxx
+         password: xxxxx
+         driver-class-name: com.mysql.cj.jdbc.Driver
+         hikari:
+            minimum-idle: 5
+            maximum-pool-size: 10
+            idle-timeout: 30000
+            max-lifetime: 1800000
+            connection-timeout: 30000
+            pool-name: HikariPool
+   6. API 명세된 swagger-ui 접속 
+      - url :  http://localhost:8080/swagger-ui/index.html
+   
+   7. API 상세설명
+      1. 작품 조회 이력 API
+           ```bash
+         curl -X GET 'http://localhost:8080/v1/artworks/history'
+      2. 인기 작품 조회 API
+         ```bash
+         curl -X GET 'http://localhost:8080/v1/artworks/best'
+      3. 작품 구매 API
+         ```bash
+         curl -X POST   'http://localhost:8080/v1/orders' \-H 'accept: */*' \-H 'Content-Type: application/json' \-d '{"artworkCode": "AR001003","userId": "lezhin01"}' 
+      4. 구매 인기작품 조회
+         ```bash
+         curl -X GET 'http://localhost:8080/v1/orders/best'
+      5. 작품 및 이력 삭제 API
+         ```bash
+         curl -X DELETE 'http://localhost:8080/v1/artworks/AR001014'
+
+📌 개발내용
+---
+
+
+📌 고려했던 상황과 해결 방안
+---
